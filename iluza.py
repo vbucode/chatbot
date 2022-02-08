@@ -1,5 +1,4 @@
 # IluzaAI chatbot
-# in command line 
 # author Bulat
 
 import ai_module
@@ -11,6 +10,8 @@ def main():
     user = input("You: ")
     ai(user)
 def ai(data):
+    if not data:
+        main()
     responseai = ai_module.getdata(data)
     print("Iluza: {}".format(responseai))
 while  True:
