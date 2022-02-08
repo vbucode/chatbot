@@ -1,6 +1,6 @@
 from words import Words
 import json
-
+answ = ""
 with open("simple.txt", "r") as file:
     slist = file.read().split("\n")
     print(slist)
@@ -14,10 +14,11 @@ with open("vector.json", "r") as file3:
     print(vdata)
 
 def getdata(xarg):
+    global answ
     word = Words(xarg)
     w = word.load()
-    var = posfunc(w)
-    return var
+    posfunc(w)
+    return answ
 
 def posfunc(xarg):
     count = 0
@@ -33,6 +34,7 @@ def posfunc(xarg):
 def findfunc(xarg):
     count = 0
     count2 = 0
+    global answ
     for j in vdata:
         count = 0
         for i in xarg:
@@ -43,4 +45,5 @@ def findfunc(xarg):
                 count += 1
                 if count == len(xarg):
                     print("find")
-                    print(slist[count2])
+                    answ = slist[count2]
+                    
