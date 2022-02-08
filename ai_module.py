@@ -1,6 +1,8 @@
 from words import Words
 import json
+
 answ = ""
+
 with open("simple.txt", "r") as file:
     slist = file.read().split("\n")
     print(slist)
@@ -44,6 +46,5 @@ def findfunc(xarg):
             else:
                 count += 1
                 if count == len(xarg):
-                    print("find")
                     answ = slist[count2]
                     
