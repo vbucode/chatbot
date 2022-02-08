@@ -1,29 +1,46 @@
 from words import Words
 import json
 
-nlist = []
-xlist = []
-countiter = 0
-flag = 1
 with open("simple.txt", "r") as file:
-    xlist = file.read().split("\n")
+    slist = file.read().split("\n")
+    print(slist)
 
 with open("bow.json", "r") as file2:
     bdata = json.load(file2)
+    print(bdata)
 
 with open("vector.json", "r") as file3:
     vdata = json.load(file3)
-
+    print(vdata)
 
 def getdata(xarg):
-    global flag
-    global countiter
     word = Words(xarg)
     w = word.load()
-    for i in w:
+    var = posfunc(w)
+    return var
+
+def posfunc(xarg):
+    count = 0
+    nlist = []
+    for i in xarg:
         try:
-        #nlist.append(bdata.index[i])
-            nlist.append(bdata.index(w))
+            count = bdata.index(i)
         except ValueError:
             print("not match")
-__version__ = "0.1"
+        nlist.append(count)
+    findfunc(nlist)
+
+def findfunc(xarg):
+    count = 0
+    count2 = 0
+    for j in vdata:
+        count = 0
+        for i in xarg:
+            if j[i] == 0:
+                count2 += 1
+                break
+            else:
+                count += 1
+                if count == len(xarg):
+                    print("find")
+                    print(slist[count2])
