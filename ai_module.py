@@ -1,8 +1,6 @@
 from words import Words
 import json
 
-answ = ""
-
 with open("simple.txt", "r") as file:
     slist = file.read().split("\n")
     print(slist)
@@ -16,35 +14,32 @@ with open("vector.json", "r") as file3:
     print(vdata)
 
 def getdata(xarg):
-    global answ
+    count = 0
+    count2 = 0
+    count3 = 0
+    answ = ""
+    nlist = []
     word = Words(xarg)
     w = word.load()
-    posfunc(w)
-    return answ
-
-def posfunc(xarg):
-    count = 0
-    nlist = []
-    for i in xarg:
+    print(w)
+    for i in w:
         try:
             count = bdata.index(i)
         except ValueError:
-            print("not match")
+            break
         nlist.append(count)
-    findfunc(nlist)
-
-def findfunc(xarg):
-    count = 0
-    count2 = 0
-    global answ
+        print(nlist)
     for j in vdata:
-        count = 0
-        for i in xarg:
+        count2 = 0
+        for i in nlist:
             if j[i] == 0:
                 count2 += 1
                 break
             else:
-                count += 1
-                if count == len(xarg):
-                    answ = slist[count2]
-                    
+                count2 += 1
+                if count2 == len(nlist):
+                    answ = slist[count3]
+                else:
+                    answ = "try again.."
+        count3 += 1
+    return answ
