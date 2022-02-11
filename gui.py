@@ -1,9 +1,9 @@
 # Iluza chatbot
 # author Bulat
 
-import ai_module
+import app
 
-print("Welcome to:\nIluza")
+print("Welcome to: Iluza")
 
 def main():
     global user
