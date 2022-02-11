@@ -16,13 +16,11 @@ with open("vector.json", "r") as file3:
 def getdata(xarg):
     count = 0
     count2 = 0
-    reply = ""
-    text = "try again.."
+    answ = ""
+    reply = "try again.."
     nlist = []
-    xlist = []
     listvect = []
     listvect2 = []
-    ylist = []
     rlist = []
     word = Words(xarg)
     w = word.load()
@@ -30,30 +28,32 @@ def getdata(xarg):
         for i, x in enumerate(bdata):
             if x == k:
                 nlist.append(i)
-
+    print(nlist)
     for j in vdata:
         count = 0
         for i in nlist:
             if j[i] != 0:
                 count += 1
         count2 += 1
-        listvect.append(count)
-        if j[i] != 0:
-            listvect2.append(count2)
+        if count != 0:
+            listvect.append(count)
+            listvect2.append(count2-1)
     print(listvect)
     print(listvect2)
 
     for i in listvect:
-        if i != 0:
-            ylist.append(i)
-
-    for x in ylist:
-        y = x/len(nlist)
-        print(int(y))
-        rlist.append(int(y))
-        if y == 1:
-            reply = slist[int(y)-1]
-        else:
-            pass
+        y = i/len(nlist)
+        rlist.append(y)
+    print(rlist)
+    if len(rlist) == 1:
+        for i in listvect2:
+            answ = slist[i]
+    else:
+        for i in rlist:
+            if i == max(rlist):
+                m = rlist.index(i)
+                v = listvect2[m]
+                print(v)
+                answ = slist[v]
     
-    return reply
+    return answ
