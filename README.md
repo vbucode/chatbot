@@ -1,3 +1,3 @@
-# iluza-chatbot like Eliza chat bot
+# Iluza-chatbot like Eliza chat bot
 # requrements: use tokenize
 # database need line like textfromuser:reply
