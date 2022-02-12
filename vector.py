@@ -1,4 +1,5 @@
-# module to vector from file with line is like userwrite:reply
+# make vector from data with text:template
+# files line is userwrite:reply
 
 from words import Words
 
