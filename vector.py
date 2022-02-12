@@ -1,5 +1,5 @@
 # make vector from data with text:template
-# files line is userwrite:reply
+# example: files line like userwrite:reply
 
 from words import Words
 
