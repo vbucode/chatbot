@@ -9,13 +9,13 @@ reply = "try again.."
 
 def main():
     global user
-    user = input("You: ")
+    user = input("\nYou: ")
     ai(user)
 def ai(data):
     if not data:
-        print("Iliza: {}".format(reply))
+        print("\nIliza: {}".format(reply))
         main()
     responseai = app.getdata(data)
-    print("Iluza: {}".format(responseai))
+    print("\nIluza: {}".format(responseai))
 while  True:
     main()
