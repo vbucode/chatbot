@@ -3,9 +3,9 @@
 
 import app
 
-print("Welcome to: Iluza")
-
 reply = "try again.."
+
+print("Welcome to: Iluza")
 
 def main():
     global user
@@ -13,9 +13,13 @@ def main():
     ai(user)
 def ai(data):
     if not data:
-        print("\nIliza: {}".format(reply))
         main()
-    responseai = app.getdata(data)
-    print("\nIluza: {}".format(responseai))
+    elif data == "exit":
+        exit()
+    send = app.getdata(data)
+    if send != "":
+        print("\nIluza: {}".format(send))
+    else:
+        print("\nIluza: {}".format(reply))
 while  True:
     main()
