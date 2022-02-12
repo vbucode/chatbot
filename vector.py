@@ -1,9 +1,10 @@
-# module to vector from answere:reply
-from words import words
+# module to vector from file with line is like userwrite:reply
+
+from words import Words
 
 llist = []
 rlist = []
-with open("chatbotdatabaseclean.txt", "r") as file:
+with open("data.txt", "r") as file:
     for line in file:
         if not line:
             continue
@@ -11,16 +12,30 @@ with open("chatbotdatabaseclean.txt", "r") as file:
             left, right, *res = line.split(":")
             llist.append(left)
             rlist.append(right)
+            varstring = " ".join(llist)
 
 def bow():
-    word = Words()
-    w = word.load()
-    humman = llist
-    return humman
+    instbow = Words(varstring)
+    instb = instbow.load()
+    return instb
 def vector():
-    word = Words()
-    w = words.load()
-    
+    klist = []
+    vlist = []
+    nlist = []
+    instvect = Words(varstring)
+    instv = instvect.load()
+    for i in llist:
+        insth = Words(i)
+        w = insth.load()
+        nlist.append(w)
+    for i in range(len(nlist)):
+        klist.append([0]*len(instv))
+    for k in instv:
+        for i in nlist:
+            for j in i:
+                if k == j:
+                    klist[nlist.index(i)][instv.index(k)] = 1
+    return klist
+
 def reply():
-    computer = rlist
     return rlist
