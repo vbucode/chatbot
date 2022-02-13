@@ -1,25 +1,35 @@
 from words import Words
-import vector
-import json
+import countvector
 
-slist = vector.reply()
-
+llist = []
+rlist = []
+with open("data.txt", "r") as file:
+        for line in file:
+            if not line:
+                continue
+            else:
+                left, right, *res = line.split(":")
+                llist.append(left)
+                rlist.append(right)
+                varstring = " ".join(llist)
 def getdata(xarg):
+    answ = ""
     count = 0
     count2 = 0
-    answ = ""
     nlist = []
+    ilist = []
     listvect = []
     listvect2 = []
-    rlist = []
+    vect = countvector.vector(llist)
     word = Words(xarg)
     w = word.load()
+    instbow = Words(varstring)
+    instb = instbow.load()
     for k in w:
-        for i, x in enumerate(vector.bow()):
+        for i, x in enumerate(instb):
             if x == k:
                 nlist.append(i)
-
-    for j in vector.vector():
+    for j in vect:
         count = 0
         for i in nlist:
             if j[i] != 0:
@@ -31,16 +41,15 @@ def getdata(xarg):
 
     for i in listvect:
         y = i/len(nlist)
-        rlist.append(y)
+        ilist.append(y)
 
-    if len(rlist) == 1:
+    if len(ilist) == 1:
         for i in listvect2:
-            answ = slist[i]
+            answ = rlist[i]
     else:
-        for i in rlist:
-            if i == max(rlist):
-                m = rlist.index(i)
+        for i in ilist:
+            if i == max(ilist):
+                m = ilist.index(i)
                 v = listvect2[m]
-                answ = slist[v]
-    
+                answ = rlist[v]
     return answ
