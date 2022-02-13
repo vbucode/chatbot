@@ -1,31 +1,14 @@
-# make vector from data with text:template
-# example: files line like userwrite:reply
+# module to count vector
 
 from words import Words
 
-llist = []
-rlist = []
-with open("data.txt", "r") as file:
-    for line in file:
-        if not line:
-            continue
-        else:
-            left, right, *res = line.split(":")
-            llist.append(left)
-            rlist.append(right)
-            varstring = " ".join(llist)
-
-def bow():
-    instbow = Words(varstring)
-    instb = instbow.load()
-    return instb
-def vector():
+def vector(getlist):
     klist = []
-    vlist = []
     nlist = []
+    varstring = " ".join(getlist)
     instvect = Words(varstring)
     instv = instvect.load()
-    for i in llist:
+    for i in getlist:
         insth = Words(i)
         w = insth.load()
         nlist.append(w)
@@ -37,6 +20,3 @@ def vector():
                 if k == j:
                     klist[nlist.index(i)][instv.index(k)] = 1
     return klist
-
-def reply():
-    return rlist
