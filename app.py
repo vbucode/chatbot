@@ -1,5 +1,5 @@
 from words import Words
-import countvector
+import vector
 
 llist = []
 rlist = []
@@ -20,7 +20,7 @@ def getdata(xarg):
     ilist = []
     listvect = []
     listvect2 = []
-    vect = countvector.vector(llist)
+    vect = vector.vector(llist)
     word = Words(xarg)
     w = word.load()
     instbow = Words(varstring)
