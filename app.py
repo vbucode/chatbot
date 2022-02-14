@@ -1,3 +1,4 @@
+from collections import Counter
 from words import Words
 import vector
 
@@ -36,8 +37,6 @@ def getdata(xarg):
         else:
             for i in listvect:
                 ilist.append(i[1])
-            for i in ilist:
-                if i == max(ilist):
-                    answ = rlist[i]
-
+                c = Counter(ilist)
+            answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
     return answ
