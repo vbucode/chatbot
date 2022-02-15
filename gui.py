@@ -3,7 +3,7 @@
 
 import app
 
-reply = "try again.."
+reply = "try again with more information.."
 
 print("Welcome to: Iluza")
 
