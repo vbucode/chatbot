@@ -15,6 +15,7 @@ with open("data.txt", "r") as file:
 
 def getdata(xarg):
     answ = ""
+    notmatch = ""
     searchlist = []
     ilist = []
     listvect = []
@@ -22,21 +23,31 @@ def getdata(xarg):
     word = Words(xarg)
     w = word.load()
     instb = vector.bow()
+    instlinetokenize = vector.linetokenize()
     for k in w:
         for i, x in enumerate(instb):
             if x == k:
                 searchlist.append(i)
     if len(searchlist) != 0:
+        # поиск в векторе изапись в формате [совпадение:индекс в векторе]
         for j in vect:
             for i in searchlist:
                 if j[i] != 0:
                     listvect.append([1,vect.index(j)])
+        # проверка на присутствие в индексах вектора(предложений)
         if len(listvect) == 1:
             for i in listvect:
-                answ = rlist[i[1]]
+                if len(listvect) == len(instlinetokenize[i[1]]):
+                    answ = rlist[i[1]]
+                else:
+                    answ = notmatch
         else:
             for i in listvect:
                 ilist.append(i[1])
                 c = Counter(ilist)
-            answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
+                v = (max(set(ilist), key=lambda x: ilist.count(x)))
+                if len(instlinetokenize[v]) == c[v]:
+                    answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
+                else:
+                    answ = notmatch
     return answ
