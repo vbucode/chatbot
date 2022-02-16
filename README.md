@@ -1,4 +1,4 @@
-# Iluza-chatbot like Eliza
+# Chatbot
 
 requrements: use tokenize, vector from my repositories
 
