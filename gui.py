@@ -1,11 +1,11 @@
-# Iluza chatbot
+# Chatbot
 # author Bulat
 
 import app
 
 reply = "try again with more information.."
 
-print("Welcome to: Iluza")
+print("Welcome to: Chatbot")
 
 def main():
     global user
@@ -18,8 +18,8 @@ def ai(data):
         exit()
     send = app.getdata(data)
     if send != "":
-        print("\nIluza: {}".format(send))
+        print("\nChatbot: {}".format(send))
     else:
-        print("\nIluza: {}".format(reply))
+        print("\nChatbot: {}".format(reply))
 while  True:
     main()
