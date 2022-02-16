@@ -1,6 +1,7 @@
 from collections import Counter
 from words import Words
 import vector
+import json
 
 llist = []
 rlist = []
@@ -13,8 +14,10 @@ with open("data.txt", "r") as file:
                 llist.append(left)
                 rlist.append(right)
 
+with open("tags.json", "r") as file2:
+    tags = json.load(file2)
+
 def getdata(xarg):
-    answ = ""
     notmatch = ""
     searchlist = []
     ilist = []
@@ -50,4 +53,11 @@ def getdata(xarg):
                     answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
                 else:
                     answ = notmatch
-    return answ
+    ransw = answ.replace("\n", "")
+    if ransw in tags:
+        for i in tags:
+            if i == ransw:
+                for j in tags[i]:
+                    ransw = j["content"]
+    
+    return ransw
