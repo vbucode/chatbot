@@ -1,18 +1,18 @@
-{"gretting":[{
+{"#gretting":[{
     "content":"привет! как дела?"
     }],
- "meeting": [{
+ "#meeting": [{
      "content": "хорошо, я буду называть тебя"
      }],
-"happy": [{
+"#happy": [{
      "content": "прекрасно",
      "content": "рада за тебя!"
      }],
- "sad": [{
+ "#sad": [{
      "content": "Не грусти :)",
      "content": "не все так плохо"
      }],
- "ambiguous": [{
+ "#ambiguous": [{
      "content": "не могу не согласиться!",
      "content": "похоже, так и есть",
      "content": "все может быть!"
