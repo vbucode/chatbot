@@ -18,7 +18,7 @@ with open("tags.json", "r") as file2:
     tags = json.load(file2)
 
 def getdata(xarg):
-    notmatch = ""
+    answ = ""
     searchlist = []
     ilist = []
     listvect = []
@@ -31,19 +31,20 @@ def getdata(xarg):
         for i, x in enumerate(instb):
             if x == k:
                 searchlist.append(i)
+
     if len(searchlist) != 0:
         # поиск в векторе изапись в формате [совпадение:индекс в векторе]
         for j in vect:
             for i in searchlist:
                 if j[i] != 0:
                     listvect.append([1,vect.index(j)])
+
         # проверка на присутствие в индексах вектора(предложений)
         if len(listvect) == 1:
             for i in listvect:
                 if len(listvect) == len(instlinetokenize[i[1]]):
                     answ = rlist[i[1]]
-                else:
-                    answ = notmatch
+
         else:
             for i in listvect:
                 ilist.append(i[1])
@@ -51,13 +52,11 @@ def getdata(xarg):
                 v = (max(set(ilist), key=lambda x: ilist.count(x)))
                 if len(instlinetokenize[v]) == c[v]:
                     answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
-                else:
-                    answ = notmatch
-    ransw = answ.replace("\n", "")
-    if ransw in tags:
+
+    if answ.replace("\n", "") in tags:
         for i in tags:
-            if i == ransw:
+            if i == answ.replace("\n", ""):
                 for j in tags[i]:
-                    ransw = j["content"]
+                    answ = j["content"]
     
-    return ransw
+    return answ
