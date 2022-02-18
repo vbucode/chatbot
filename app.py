@@ -22,7 +22,7 @@ def getdata(xarg):
     searchlist = []
     ilist = []
     listvect = []
-    vect = vector.vector(llist, tf = 0)
+    vect = vector.vector(llist, tfidf = 0)
     word = Words(xarg)
     w = word.load()
     instb = vector.bow()
