@@ -1,5 +1,4 @@
 # chatbot
-# author Bulat
 
 import app
 import logging
