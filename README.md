@@ -1,5 +1,5 @@
 # Chatbot
 
-database need with line like textfromuser:reply
+chatbot in QA
 
 requirements: modules tokenize.py, words.py, wordvector.py from my repositories
