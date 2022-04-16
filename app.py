@@ -12,7 +12,7 @@ with open("data.txt", "r") as file:
             else:
                 left, right, *res = line.split(":")
                 llist.append(left)
-                rlist.append(right)
+                rlist.append(right.replace("\n", ""))
 
 with open("tags.json", "r") as file2:
     tags = json.load(file2)
@@ -53,9 +53,9 @@ def getdata(xarg):
                 if len(instlinetokenize[v]) == c[v]:
                     answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
 
-    if answ.replace("\n", "") in tags:
+    if answ in tags:
         for i in tags:
-            if i == answ.replace("\n", ""):
+            if i == answ:
                 for j in tags[i]:
                     answ = j["content"]
     
