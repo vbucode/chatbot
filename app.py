@@ -1,6 +1,6 @@
 from collections import Counter
 from words import Words
-import wordvector
+from wordvector import WordVector
 import json
 
 llist = []
@@ -22,11 +22,12 @@ def getdata(xarg):
     searchlist = []
     ilist = []
     listvect = []
-    vect = wordvector.vector(llist, tfidf = 0)
+    ivect = WordVector(llist, tfidf = 0)
+    vect = ivect.load()
     word = Words(xarg)
     w = word.load()
-    instb = wordvector.bow()
-    instlinetokenize = wordvector.linetokenize()
+    instb = ivect.bow()
+    instlinetokenize = ivect.linetokenize()
     for k in w:
         for i, x in enumerate(instb):
             if x == k:
