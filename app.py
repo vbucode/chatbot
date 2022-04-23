@@ -27,12 +27,13 @@ class App:
         self.xarg = xarg
 
     def getdata(self):
-        ivect = WordVector(llist, tfidf = 0)
+        global answ
+        ivect = WordVector(llist, tfidf = "01")
         vect = ivect.load()
         word = Words(self.xarg)
         w = word.load()
         instb = ivect.bow()
-        instlinetokenize = ivect.linetokenize()
+        instlinetokenize = ivect.senttokenize()
         for k in w:
             for i, x in enumerate(instb):
                 if x == k:
