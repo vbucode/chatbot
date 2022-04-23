@@ -8,7 +8,6 @@ reply = "Я вас не понимаю, пожалуйста, повторите
 print("Welcome to: ChatBot")
 
 def main():
-    global user
     user = input("\nYou: ")
     logging.info(user)
     if not user:
