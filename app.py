@@ -16,48 +16,50 @@ with open("data.txt", "r") as file:
 
 with open("tags.json", "r") as file2:
     tags = json.load(file2)
+class App:
+    def __init__(self, xarg):
+        self.xarg = xarg
+    def getdata(self):
+        answ = ""
+        searchlist = []
+        ilist = []
+        listvect = []
+        ivect = WordVector(llist, tfidf = 0)
+        vect = ivect.load()
+        word = Words(self.xarg)
+        w = word.load()
+        instb = ivect.bow()
+        instlinetokenize = ivect.linetokenize()
+        for k in w:
+            for i, x in enumerate(instb):
+                if x == k:
+                    searchlist.append(i)
 
-def getdata(xarg):
-    answ = ""
-    searchlist = []
-    ilist = []
-    listvect = []
-    ivect = WordVector(llist, tfidf = 0)
-    vect = ivect.load()
-    word = Words(xarg)
-    w = word.load()
-    instb = ivect.bow()
-    instlinetokenize = ivect.linetokenize()
-    for k in w:
-        for i, x in enumerate(instb):
-            if x == k:
-                searchlist.append(i)
+        if len(searchlist) != 0:
+            # поиск в векторе и запись в формате [совпадение = 1:индекс в векторе]
+            for j in vect:
+                for i in searchlist:
+                    if j[i] != 0:
+                        listvect.append([1,vect.index(j)])
 
-    if len(searchlist) != 0:
-        # поиск в векторе изапись в формате [совпадение:индекс в векторе]
-        for j in vect:
-            for i in searchlist:
-                if j[i] != 0:
-                    listvect.append([1,vect.index(j)])
+            # проверка на присутствие в индексах вектора(предложений)
+            if len(listvect) == 1:
+                for i in listvect:
+                    if len(listvect) == len(instlinetokenize[i[1]]):
+                        answ = rlist[i[1]]
 
-        # проверка на присутствие в индексах вектора(предложений)
-        if len(listvect) == 1:
-            for i in listvect:
-                if len(listvect) == len(instlinetokenize[i[1]]):
-                    answ = rlist[i[1]]
+            else:
+                for i in listvect:
+                    ilist.append(i[1])
+                    c = Counter(ilist)
+                    v = (max(set(ilist), key=lambda x: ilist.count(x)))
+                    if len(instlinetokenize[v]) == c[v]:
+                        answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
 
-        else:
-            for i in listvect:
-                ilist.append(i[1])
-                c = Counter(ilist)
-                v = (max(set(ilist), key=lambda x: ilist.count(x)))
-                if len(instlinetokenize[v]) == c[v]:
-                    answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
+        if answ in tags:
+            for i in tags:
+                if i == answ:
+                    for j in tags[i]:
+                        answ = j["content"]
 
-    if answ in tags:
-        for i in tags:
-            if i == answ:
-                for j in tags[i]:
-                    answ = j["content"]
-    
-    return answ
+        return answ

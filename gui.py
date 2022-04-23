@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import app
+from app import App
 import logging
 
 reply = "Я вас не понимаю, пожалуйста, повторите"
@@ -9,6 +9,7 @@ print("Welcome to: ChatBot")
 
 def main():
     user = input("\nYou: ")
+    send = App(user)
     logging.info(user)
     if not user:
         print("\nChatbot: {}".format(reply))
@@ -18,12 +19,12 @@ def main():
         print("\nChatbot: {}".format(reply))
         logging.info(reply) 
     else:
-        send = app.getdata(user)
-        if send == "":
+        s = send.getdata()
+        if s == "":
             print("\nChatbot: {}".format(reply))
         else:
-            print("\nChatbot: {}".format(send))
-            logging.info(send)
+            print("\nChatbot: {}".format(s))
+            logging.info(s)
 
 logging.basicConfig(level=logging.DEBUG,
                     filename = "mylog.log",
