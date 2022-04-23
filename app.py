@@ -5,6 +5,11 @@ import json
 
 llist = []
 rlist = []
+answ = ""
+searchlist = []
+ilist = []
+listvect = []
+
 with open("data.txt", "r") as file:
         for line in file:
             if not line:
@@ -16,14 +21,12 @@ with open("data.txt", "r") as file:
 
 with open("tags.json", "r") as file2:
     tags = json.load(file2)
+
 class App:
     def __init__(self, xarg):
         self.xarg = xarg
+
     def getdata(self):
-        answ = ""
-        searchlist = []
-        ilist = []
-        listvect = []
         ivect = WordVector(llist, tfidf = 0)
         vect = ivect.load()
         word = Words(self.xarg)
