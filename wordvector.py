@@ -32,7 +32,7 @@ class WordVector:
                 for j in i:
                     klist[nlist.index(i)][instv.index(j)] = math.log10(len(nlist)/sum([1.0 for i in nlist if j in i]))
 
-        elif self.tfidf == "tfidf":
+        elif self.tfidf == "tf-idf":
             for i in nlist:
                 for j in i:
                     c = instv.count(j)
