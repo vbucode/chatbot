@@ -12,7 +12,7 @@ with open("data.txt", "r") as file:
             else:
                 left, right, *res = line.split(":")
                 llist.append(left)
-                rlist.append(righе.replace("\n", ""))
+                rlist.append(right.replace("\n", ""))
 
 with open("tags.json", "r") as file2:
     tags = json.load(file2)
