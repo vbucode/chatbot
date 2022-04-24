@@ -1,27 +1,36 @@
-#!/usr/bin/python3
 from app import App
+import logging
 
-reply = "Я вас не понимаю, пожалуйста, повторите"
-#reply = "more information.."
+#reply = "Я вас не понимаю, пожалуйста, повторите"
+reply = "more information.."
 
 print("Welcome to: ChatBot")
 
 def main():
+    global user
     user = input("\nYou: ")
-    if not user:
-        print("\nChatbot: {}".format(reply))
-    elif user == "exit":
+    logging.info(user)
+    ai(user)
+def ai(data):
+    if not data:
+        main()
+    elif data == "exit":
         exit()
-    elif len(user) > 10:
-        print("\nChatbot: {}".format(reply))
-    else:
-        answ(user)
-def answ(xarg):
-    send = App(xarg)
+    elif len(data) > 40:
+        wrong()
+    send = App(data)
     s = send.getdata()
     if s == "":
-        print("\nChatbot: {}".format(reply))
+        wrong()
     else:
         print("\nChatbot: {}".format(s))
+        logging.info(s)
+
+def wrong():
+    print("\nChatbot: {}".format(reply))
+    logging.info(reply)
+
+logging.basicConfig( level=logging.DEBUG, filename = "mylog.log", filemode="a", format = "%(asctime)s - %(module)s - %(levelname)s - %(funcName)s: %(lineno)d - %(message)s", datefmt='%H:%M:%S')
+
 while  True:
     main()
