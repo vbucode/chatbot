@@ -5,10 +5,6 @@ import json
 
 llist = []
 rlist = []
-answ = ""
-searchlist = []
-ilist = []
-listvect = []
 
 with open("data.txt", "r") as file:
         for line in file:
@@ -28,7 +24,16 @@ class App:
 
     def getdata(self):
         global answ
-        ivect = WordVector(llist, tfidf = "01")
+        searchlist = []
+        answ = ""
+        ilist = []
+        listvect = []
+        tlist = []
+        for i in llist:
+            ll = Words(i)
+            l = ll.load()
+            tlist.append(l)
+        ivect = WordVector(tlist)
         vect = ivect.load()
         word = Words(self.xarg)
         w = word.load()
@@ -44,21 +49,15 @@ class App:
             for j in vect:
                 for i in searchlist:
                     if j[i] != 0:
-                        listvect.append([1,vect.index(j)])
+                        listvect.append(vect.index(j))
 
             # проверка на присутствие в индексах вектора(предложений)
-            if len(listvect) == 1:
-                for i in listvect:
-                    if len(listvect) == len(instlinetokenize[i[1]]):
-                        answ = rlist[i[1]]
-
-            else:
-                for i in listvect:
-                    ilist.append(i[1])
-                    c = Counter(ilist)
-                    v = (max(set(ilist), key=lambda x: ilist.count(x)))
-                    if len(instlinetokenize[v]) == c[v]:
-                        answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
+            for i in listvect:
+                ilist.append(i)
+                c = Counter(ilist)
+                v = (max(set(ilist), key=lambda x: ilist.count(x)))
+                if len(instlinetokenize[v]) == c[v]:
+                    answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
 
         if answ in tags:
             for i in tags:
