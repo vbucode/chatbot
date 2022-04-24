@@ -52,12 +52,10 @@ class App:
                         listvect.append(vect.index(j))
 
             # проверка на присутствие в индексах вектора(предложений)
-            for i in listvect:
-                ilist.append(i)
-                c = Counter(ilist)
-                v = (max(set(ilist), key=lambda x: ilist.count(x)))
-                if len(instlinetokenize[v]) == c[v]:
-                    answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
+            c = Counter(listvect)
+            v = (max(set(listvect), key=lambda x: listvect.count(x)))
+            if len(instlinetokenize[v]) == c[v]:
+                answ = rlist[(max(set(listvect), key=lambda x: listvect.count(x)))]
 
         if answ in tags:
             for i in tags:
