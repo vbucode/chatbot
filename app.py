@@ -21,6 +21,7 @@ with open("tags.json", "r") as file2:
 class App:
     def __init__(self, xarg):
         self.xarg = xarg
+        
     def getdata(self):
         answ = ""
         searchlist = []
@@ -42,7 +43,6 @@ class App:
                     searchlist.append(i)
 
         if len(searchlist) != 0:
-            # поиск в векторе изапись в формате [совпадение:индекс в векторе]
             for j in vect:
                 for i in searchlist:
                     if j[i] != 0:
