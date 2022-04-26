@@ -5,6 +5,7 @@ import json
 
 llist = []
 rlist = []
+
 with open("data.txt", "r") as file:
         for line in file:
             if not line:
@@ -25,12 +26,16 @@ class App:
         searchlist = []
         ilist = []
         listvect = []
-        ivect = WordVector(llist)
+        dlist = []
+        for i in llist:
+            vw = Words(i)
+            wvl = vw.load()
+            dlist.append(wvl)
+        ivect = WordVector(dlist)
         vect = ivect.load()
         word = Words(self.xarg)
         w = word.load()
         instb = ivect.bow()
-        instlinetokenize = ivect.senttokenize()
         for k in w:
             for i, x in enumerate(instb):
                 if x == k:
@@ -46,7 +51,7 @@ class App:
             # проверка на присутствие в индексах вектора(предложений)
             if len(listvect) == 1:
                 for i in listvect:
-                    if len(listvect) == len(instlinetokenize[i[1]]):
+                    if len(listvect) == len(dlist[i[1]]):
                         answ = rlist[i[1]]
 
             else:
@@ -54,7 +59,7 @@ class App:
                     ilist.append(i[1])
                     c = Counter(ilist)
                     v = (max(set(ilist), key=lambda x: ilist.count(x)))
-                    if len(instlinetokenize[v]) == c[v]:
+                    if len(dlist[v]) == c[v]:
                         answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
 
         if answ in tags:
