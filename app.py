@@ -46,21 +46,14 @@ class App:
             for j in vect:
                 for i in searchlist:
                     if j[i] != 0:
-                        listvect.append([1,vect.index(j)])
+                        listvect.append(vect.index(j))
 
-            # проверка на присутствие в индексах вектора(предложений)
-            if len(listvect) == 1:
-                for i in listvect:
-                    if len(listvect) == len(dlist[i[1]]):
-                        answ = rlist[i[1]]
-
-            else:
-                for i in listvect:
-                    ilist.append(i[1])
-                    c = Counter(ilist)
-                    v = (max(set(ilist), key=lambda x: ilist.count(x)))
-                    if len(dlist[v]) == c[v]:
-                        answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
+            for i in listvect:
+                ilist.append(i)
+                c = Counter(ilist)
+                v = (max(set(ilist), key=lambda x: ilist.count(x)))
+                if len(dlist[v]) == c[v]:
+                    answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
 
         if answ in tags:
             for i in tags:
