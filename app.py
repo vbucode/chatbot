@@ -21,7 +21,6 @@ with open("tags.json", "r") as file2:
 class App:
     def __init__(self, xarg):
         self.xarg = xarg
-        
     def getdata(self):
         answ = ""
         searchlist = []
@@ -42,18 +41,17 @@ class App:
                 if x == k:
                     searchlist.append(i)
 
-        if len(searchlist) != 0:
-            for j in vect:
-                for i in searchlist:
-                    if j[i] != 0:
-                        listvect.append(vect.index(j))
+        for j in vect:
+            for i in searchlist:
+                if j[i] != 0:
+                    listvect.append(vect.index(j))
 
-            for i in listvect:
-                ilist.append(i)
-                c = Counter(ilist)
-                v = (max(set(ilist), key=lambda x: ilist.count(x)))
-                if len(dlist[v]) == c[v]:
-                    answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
+        for i in listvect:
+            ilist.append(i)
+            c = Counter(ilist)
+            v = (max(set(ilist), key=lambda x: ilist.count(x)))
+            if len(dlist[v]) == c[v]:
+                answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
 
         if answ in tags:
             for i in tags:
