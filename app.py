@@ -22,6 +22,7 @@ class App:
         searchlist = []
         ilist = []
         listvect = []
+        instb = []
         dlist = []
         for i in llist:
             vw = Words(i)
@@ -31,7 +32,10 @@ class App:
         vect = ivect.load()
         word = Words(self.xarg)
         w = word.load()
-        instb = ivect.bow()
+        # bag of words
+        for i in dlist:
+            for j in i:
+                instb.append(j)
         for k in w:
             for i, x in enumerate(instb):
                 if x == k:
