@@ -41,15 +41,16 @@ class App:
                 if x == k:
                     searchlist.append(i)
 
-        for j in vect:
-            for i in searchlist:
-                if j[i] != 0:
-                    listvect.append(vect.index(j))
+        if len(searchlist) != 0:
+            for j in vect:
+                for i in searchlist:
+                    if j[i] != 0:
+                        listvect.append(vect.index(j))
 
-        for i in listvect:
-            ilist.append(i)
-            c = Counter(ilist)
-            v = (max(set(ilist), key=lambda x: ilist.count(x)))
-            if len(dlist[v]) == c[v]:
-                answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
+            for i in listvect:
+                ilist.append(i)
+                c = Counter(ilist)
+                v = (max(set(ilist), key=lambda x: ilist.count(x)))
+                if len(dlist[v]) == c[v]:
+                    answ = rlist[(max(set(ilist), key=lambda x: ilist.count(x)))]
         return answ
