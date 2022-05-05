@@ -19,9 +19,7 @@ class App:
         self.xarg = xarg
     def getdata(self):
         answ = ""
-        searchlist = []
-        ilist = []
-        slist = []
+        searchlist = [
         listvect = []
         instb = []
         dlist = []
