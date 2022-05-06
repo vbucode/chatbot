@@ -29,7 +29,6 @@ ivect = WordVector(dlist)
 vect = ivect.load()
 
 def main():
-    global user
     global vect
     global dlist
     answ = ""
