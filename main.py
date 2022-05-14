@@ -6,7 +6,8 @@ llist = []
 rlist = []
 dlist = []
 
-#reply = "Я вас не понимаю, пожалуйста, повторите"
+# reply = "Я вас не понимаю, пожалуйста, повторите"
+# reply = "I have nothing to say"
 
 reply = "more information.."
 
