@@ -1,17 +1,17 @@
+import tkinter
+from tkinter import scrolledtext
 import logging
 from words import Words
 from wordvector import WordVector
 
+root = tkinter.Tk()
+root.title("chat bot")
+root.geometry("405x230")
+root.configure(bg = "black")
+
 llist = []
 rlist = []
 dlist = []
-
-# reply = "Я вас не понимаю, пожалуйста, повторите"
-# reply = "I have nothing to say"
-
-reply = "more information.."
-
-print("Welcome to: ChatBot")
 
 with open("data.txt", "r") as file:
     for line in file:
@@ -26,24 +26,22 @@ for i in llist:
     vw = Words(i)
     wvl = vw.load()
     dlist.append(wvl)
+
 ivect = WordVector(dlist)
 vect = ivect.load()
 
-def main():
-    global vect
-    global dlist
+def send():
     answ = ""
     searchlist = []
     instb = []
-    user = input("\nYou: ")
-    logging.info(user)
-    if not user:
-        main()
-    elif user == "exit":
-        exit()
-    word = Words(user)
-    w = word.load()
-
+    reply = "more information.."
+    logging.info(ent.get())
+    if not ent.get():
+        pass
+    else:
+        word = Words(ent.get())
+        w = word.load()
+    ent.delete(0, "end")
     for i in dlist:
         for j in i:
             instb.append(j)
@@ -61,16 +59,23 @@ def main():
                     if count == len(dlist[vect.index(j)]):
                         answ = rlist[vect.index(j)]
     if answ == "":
-        wrong()
+        r = "Chatbot: " + reply + "\n"
+        txt.insert(2.0, r)
+        logging.info(r)
     else:
-        print("\nChatbot: {}".format(answ))
-        logging.info(answ)
+        r = "Chatbot: " + answ + "\n"
+        txt.insert(2.0, r)
+        logging.info(r)
 
-def wrong():
-    print("\nChatbot: {}".format(reply))
-    logging.info(reply)
+ent = tkinter.Entry(root, width = 40)
+ent.focus()
+btn1 = tkinter.Button(root, text = "send", bg = "gray", command = send)
+txt = scrolledtext.ScrolledText(root, width = 45, height = 10)
+txt.grid(column = 0, row = 0)
+ent.place(x = 5, y = 190 )
+btn1.place(x = 340, y = 185)
 
 logging.basicConfig( level=logging.DEBUG, filename = "mylog.log", filemode="a", format = "%(asctime)s - %(module)s - %(levelname)s - %(funcName)s: %(lineno)d - %(message)s", datefmt='%H:%M:%S')
 
-while  True:
-    main()
+if __name__ == "__main__":
+    root.mainloop()
