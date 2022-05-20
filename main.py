@@ -60,11 +60,11 @@ def send():
                         answ = rlist[vect.index(j)]
     if answ == "":
         r = "Chatbot: " + reply + "\n"
-        txt.insert(2.0, r)
+        txt.insert(0, r)
         logging.info(r)
     else:
         r = "Chatbot: " + answ + "\n"
-        txt.insert(2.0, r)
+        txt.insert(tkinter.END, r)
         logging.info(r)
 
 ent = tkinter.Entry(root, width = 40)
