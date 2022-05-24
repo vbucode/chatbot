@@ -5,7 +5,7 @@ from words import Words
 from wordvector import WordVector
 
 root = tkinter.Tk()
-root.title("chat bot")
+root.title("chatbot")
 root.geometry("405x230")
 root.configure(bg = "black")
 
@@ -29,6 +29,7 @@ for i in llist:
 
 ivect = WordVector(dlist)
 vect = ivect.load()
+print(vect)
 
 def send():
     answ = ""
