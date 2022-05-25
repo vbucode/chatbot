@@ -29,7 +29,6 @@ for i in llist:
 
 ivect = WordVector(dlist)
 vect = ivect.load()
-print(vect)
 
 def send():
     answ = ""
