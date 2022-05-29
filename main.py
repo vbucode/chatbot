@@ -41,23 +41,19 @@ def send():
     else:
         word = Words(ent.get())
         w = word.load()
-    ent.delete(0, "end")
-    for i in dlist:
-        for j in i:
-            instb.append(j)
-    for k in w:
-        for i, x in enumerate(instb):
-            if x == k:
-                searchlist.append(i)
-
-    if len(searchlist) != 0:
-        for j in vect:
+        ent.delete(0, "end")
+        if len(w) != 0:
             count = 0
-            for i in searchlist:
-                if j[i] != 0:
+            for i in dlist:
+                countw = 0
+                for j in i:
                     count += 1
-                    if count == len(dlist[vect.index(j)]):
-                        answ = rlist[vect.index(j)]
+                    for k in w:
+                        if k == j and vect[dlist.index(i)][count - 1] == 1:
+                            countw += 1
+                            if countw == len(w) and countw == len(i):
+                                answ = rlist[dlist.index(i)]
+
     if answ == "":
         r = "Chatbot: " + reply + "\n"
         txt.insert(tkinter.END, r)
