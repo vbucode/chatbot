@@ -12,6 +12,7 @@ root.configure(bg = "black")
 llist = []
 rlist = []
 dlist = []
+instb = []
 
 with open("data.txt", "r") as file:
     for line in file:
@@ -30,10 +31,13 @@ for i in llist:
 ivect = WordVector(dlist)
 vect = ivect.load()
 
+for i in dlist:
+    for j in i:
+        instb.append(j)
+
 def send():
     answ = ""
     searchlist = []
-    instb = []
     reply = "more information.."
     logging.info(ent.get())
     if not ent.get():
@@ -42,17 +46,21 @@ def send():
         word = Words(ent.get())
         w = word.load()
         ent.delete(0, "end")
+        for k in w:
+            for i, x in enumerate(instb):
+                if x == k:
+                    searchlist.append(i)
         if len(w) != 0:
-            count = 0
-            for i in dlist:
+            for i in range(len(dlist)):
                 countw = 0
-                for j in i:
-                    count += 1
-                    for k in w:
-                        if k == j and vect[dlist.index(i)][count - 1] == 1:
+                for k in searchlist:
+                    try:
+                        if vect[i][k] == 1:
                             countw += 1
-                            if countw == len(w) and countw == len(i):
-                                answ = rlist[dlist.index(i)]
+                            if countw == len(dlist[i]):
+                                answ = rlist[i]
+                    except ValueError:
+                        pass
 
     if answ == "":
         r = "Chatbot: " + reply + "\n"
